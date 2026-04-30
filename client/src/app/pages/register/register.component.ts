@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -10,9 +10,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  @ViewChild('loginForm') form: NgForm | undefined;
 
-  submitHandler(nameInput: HTMLLabelElement){
-    console.log();
+  submitHandler(nameInput: HTMLInputElement, emailInput: HTMLInputElement){
+    console.log(nameInput);
+    console.log(emailInput);
     
 
   }

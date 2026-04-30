@@ -3,20 +3,31 @@
        <div class="text">
           Register Form
        </div>
-       <form (ngSubmit)="submitHandler()">
+       <form #registerForm="ngForm" (ngSubmit)="submitHandler()">
         <div class="field">
+         <label>User Name</label>
             <input 
                type="text" 
+               name="name"
+               name
                required
                ngModel
                #nameInput="ngModel" />
             
-            <label>User Name</label>
+            
          </div>
           <div class="field">
-             <input type="text" required>
+            <label>Email or Phone</label>
+             <input 
+               type="text" 
+               name="email"
+               email
+               ngModel
+               required 
+               #emailInput="ngModel"
+               />
              
-             <label>Email or Phone</label>
+             
           </div>
           <div class="field">
              <input type="password" required>
