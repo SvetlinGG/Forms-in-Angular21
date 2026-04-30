@@ -3,20 +3,24 @@
        <div class="text">
           Register Form
        </div>
-       <form action="#">
+       <form (ngSubmit)="submitHandler()">
         <div class="field">
-            <input type="text" required>
-            <span class="fas fa-user"></span>
+            <input 
+               type="text" 
+               required
+               ngModel
+               #nameInput="ngModel" />
+            
             <label>User Name</label>
          </div>
           <div class="field">
              <input type="text" required>
-             <span class="fas fa-user"></span>
+             
              <label>Email or Phone</label>
           </div>
           <div class="field">
              <input type="password" required>
-             <span class="fas fa-lock"></span>
+            
              <label>Password</label>
           </div>
           <div class="forgot-pass">
