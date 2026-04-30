@@ -3,20 +3,35 @@
        <div class="text">
           Register Form
        </div>
-       <form action="#">
+       <form #registerForm="ngForm" (ngSubmit)="submitHandler()">
         <div class="field">
-            <input type="text" required>
-            <span class="fas fa-user"></span>
-            <label>User Name</label>
+         <label>User Name</label>
+            <input 
+               type="text" 
+               name="name"
+               name
+               required
+               ngModel
+               #nameInput="ngModel" />
+            
+            
          </div>
           <div class="field">
-             <input type="text" required>
-             <span class="fas fa-user"></span>
-             <label>Email or Phone</label>
+            <label>Email or Phone</label>
+             <input 
+               type="text" 
+               name="email"
+               email
+               ngModel
+               required 
+               #emailInput="ngModel"
+               />
+             
+             
           </div>
           <div class="field">
              <input type="password" required>
-             <span class="fas fa-lock"></span>
+            
              <label>Password</label>
           </div>
           <div class="forgot-pass">
