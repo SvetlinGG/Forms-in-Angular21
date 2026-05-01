@@ -5,16 +5,22 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  @ViewChild('loginForm') form: NgForm | undefined;
+  @ViewChild('registerForm') form: NgForm | undefined;
 
-  submitHandler(nameInput: HTMLInputElement, emailInput: HTMLInputElement){
-    console.log(nameInput);
-    console.log(emailInput);
+  formSubmitHandler(){
+
+    const form = this.form
+    
+
+
+    console.log(form?.value);
+    
+    
     
 
   }
