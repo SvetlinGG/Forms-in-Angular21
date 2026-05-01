@@ -12,15 +12,16 @@ import { RouterLink } from '@angular/router';
 export class RegisterComponent {
   @ViewChild('registerForm') form: NgForm | undefined;
 
-  formSubmitHandler(nameInput: HTMLInputElement, emailInput: HTMLInputElement){
+  formSubmitHandler(){
 
     const form = this.form
-
-
-    console.log(nameInput);
-    console.log(emailInput);
     
-    form?.reset()
+
+
+    console.log(form?.value);
+    
+    
+    
 
   }
 

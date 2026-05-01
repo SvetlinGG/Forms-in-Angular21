@@ -5,39 +5,37 @@
        </div>
        <form #registerForm="ngForm" (ngSubmit)="formSubmitHandler()">
         <div class="form-group">
-         <label for="name">User Name</label>
+         <label for="name"></label>
             <input 
                id="name"
                type="text" 
                name="name"
                name
                required
-               ngModel
-               #nameInput="ngModel" />
+               placeholder="user name..."
+                />
          </div>
 
           <div class="form-group">
-            <label for="email">Email or Phone</label>
+            <label for="email"></label>
              <input 
                id="email"
                type="text" 
                name="email"
                email
-               ngModel
                required 
-               #emailInput="ngModel"
+               placeholder="your email..."
                />
           </div>
 
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password"></label>
              <input 
                id="password"
                type="password" 
                name="password"
-               ngModel
                required
-               #passwordInput="ngModel"
+               placeholder="password"
                />
           </div>
 
