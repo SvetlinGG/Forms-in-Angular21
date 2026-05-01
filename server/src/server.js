@@ -8,6 +8,10 @@ const PORT = 5050;
 
 app.use(express.json());
 
+app.use(cors());
+
+app.use('/api/auth', )
+
 app.listen(PORT, () => {
     console.log(`Server is listening on port: ${PORT}`);
     
