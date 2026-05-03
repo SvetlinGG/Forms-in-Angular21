@@ -22,7 +22,27 @@ export class AuthService {
     );
   }
 
-  
+  login(data: {email: string, password: string}){
+    return this.http.post<AuthUser>(`${this.apiUrl}/login`, data).pipe(
+      tap((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.user.set(user)
+      })
+    );
+  }
+
+  getToken(): string | null{
+    return this.user()?.accessToken || null;
+  }
+
+  logout(): void{
+    localStorage.removeItem('user');
+    this.user.set(null);
+  }
+
+  getCurrentUser(): string | null{
+    return this.user()?.id || null
+  }
 
 
   private getUserFromStorage(): AuthUser | null{
