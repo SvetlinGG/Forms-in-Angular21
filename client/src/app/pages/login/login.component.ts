@@ -32,10 +32,30 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
 
-  
-
-
   login(){
+
+    if(this.loginForm.invalid){
+      this.loginForm.markAllAsTouched();
+      return
+    }
+    this.errorMessage.set('');
+    this.isSubmitting.set(true);
+
+    const { email, password } = this.loginForm.getRawValue();
+
+    this.auth.login({
+      email: email || '',
+      password: password || ''
+    }).subscribe({
+      next: () => {
+        this.isSubmitting.set(false);
+        this.router.navigate(['/dashboard'])
+      },
+      error: (err) => {
+        this.isSubmitting.set(false);
+        this.errorMessage.set(err?.error?.message || err?.message || 'login failed')
+      }
+    });
 
   }
 
