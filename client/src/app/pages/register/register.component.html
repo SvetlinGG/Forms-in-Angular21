@@ -3,7 +3,7 @@
        <div class="text">
           Register Form
        </div>
-       <form #registerForm="ngForm" (ngSubmit)="formSubmitHandler()">
+       <form [formGroup]="registerForm" (ngSubmit)="register()" >
         <div class="form-group">
          <label for="name"></label>
             <input 
@@ -13,6 +13,7 @@
                name
                required
                placeholder="user name..."
+               
                 />
          </div>
 

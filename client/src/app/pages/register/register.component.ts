@@ -1,28 +1,26 @@
-import { Component, NgModule, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormControl, ReactiveFormsModule} from '@angular/forms'
+import { Router, RouterLink } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
+  
 })
 export class RegisterComponent {
-  @ViewChild('registerForm') form: NgForm | undefined;
 
-  formSubmitHandler(){
+  private fb = inject(FormBuilder);
+  private router = inject(Router)
 
-    const form = this.form
-    
-
-
-    console.log(form?.value);
-    
-    
-    
+  register(){
 
   }
+  
 
 }
