@@ -83,3 +83,56 @@ router.post('/:id/like', authMiddleware, async (req, res) => {
     }
 });
 
+router.post('/:id/comments', authMiddleware, async (req, res) => {
+    try {
+        const { text } = req.body;
+
+        if(!text || text.trim().length < 2){
+            return res.status(400).json({
+                message: 'Comment must be at least 2 characters long'
+            }); 
+        }
+
+        const comment = await Comment.findById(req.params.id);
+
+        if(!comment){
+            return res.status(404).json({ message: 'Comment not found'})
+        }
+
+        comment.comments.push({
+            user: req.user.id,
+            text: text.trim()
+        });
+
+        await comment.save();
+
+        const updatedComment = await Comment.findById(req.params.id)
+            .populate('owner', 'username email')
+            .populate('comments.user', 'username email');
+        res.status(201).json(updatedComment);
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to add comment'})
+    }
+});
+
+router.delete('/:id', authMiddleware, async (req, res) => {
+    try {
+        const deletedComment = await Comment.findById(req.params.id);
+
+        if(!deletedComment){
+            return res.status(404).json({ message: 'Comment not found'})
+        }
+
+        if(deletedComment.owner.toString() !== req.user.id){
+            return res.status(403).json({ message: 'You are not the owner of this comment'})
+        }
+
+        await Comment.findByIdAndDelete(req.params.id);
+
+        res.json({message: 'Comment deleted successfully'});
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to delete comment'})
+    }
+});
+
+export default router;
