@@ -1,32 +1,24 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule} from '@angular/forms'
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormControl, ReactiveFormsModule} from '@angular/forms'
+import { Router, RouterLink } from '@angular/router';
 
 
-
-interface LoginData {
-  email: string,
-  password: string
-}
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
   
 })
 export class RegisterComponent {
 
-  name = new FormControl('');
-  
-  
-  updateName(){
-    this.name.setValue('SvetlinGG');
+  private fb = inject(FormBuilder);
+  private router = inject(Router)
 
-    console.log(this.name);
-    
+  register(){
 
   }
   
