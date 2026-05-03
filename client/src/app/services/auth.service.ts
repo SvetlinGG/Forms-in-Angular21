@@ -1,6 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { AuthUser } from '../models/auth-user.model';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root'})
 export class AuthService {
@@ -11,6 +12,15 @@ export class AuthService {
   isLoggedIn = computed(() => !!this.user())
 
   constructor(private http: HttpClient) { }
+
+  register(data: {username: string, email: string, password: string}){
+    return this.http.post<AuthUser>(`${this.apiUrl}/register`, data).pipe(
+      tap((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.user.set(user)
+      })
+    );
+  }
 
   
 
